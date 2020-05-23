@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:izwebacademy_app/support/colors/HexColor.dart';
+import 'package:izwebacademy_app/support/colors/app_colors.dart';
+import 'package:izwebacademy_app/support/loaders/loader.dart';
+import 'package:izwebacademy_app/support/logo/logo_holder.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
+  @override
+  _SplashPageState createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, "/login");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,10 +26,10 @@ class SplashPage extends StatelessWidget {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              HexColor("3E416D"),
-              HexColor("3E416D"),
-              HexColor("3E416D"),
-              HexColor("3E416D"),
+              AppColors.bgColor,
+              AppColors.bgColor,
+              AppColors.bgColor,
+              AppColors.bgColor,
               Colors.white54,
             ],
           ),
@@ -23,17 +38,10 @@ class SplashPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              width: 180.0,
-              height: 180.0,
-              padding: EdgeInsets.all(100),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/logos/logo.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
+            LogoHolder(
+              alt: false,
             ),
+            Loader(),
           ],
         ),
       ),

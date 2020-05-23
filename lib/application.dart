@@ -8,7 +8,7 @@ class Application extends StatelessWidget {
       child: MaterialApp(
         title: 'Izweb Academy',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Colors.deepPurple,
         ),
         initialRoute: '/',
         routes: routes,
