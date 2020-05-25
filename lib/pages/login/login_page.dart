@@ -58,7 +58,9 @@ class _LoginPageState extends State<LoginPage> {
                           sizedBoxHeight: 30,
                         ),
                         ActionButton(
-                          onClick: () {},
+                          onClick: () {
+                            Navigator.pushReplacementNamed(context, Routes.homeUrl);
+                          },
                           labelText: 'Sign In',
                           isLoading: false,
                           sizedBoxHeight: 30,

@@ -30,7 +30,7 @@ class ActionButton extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () {},
+              onTap: onClick,
               child: Center(
                 child: isLoading
                     ? Loader()
