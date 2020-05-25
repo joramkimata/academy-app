@@ -13,6 +13,7 @@ class Application extends StatelessWidget {
         title: 'Izweb Academy',
         theme: ThemeData(
           primaryColor: Colors.deepPurple,
+          fontFamily: 'GothamRounded',
         ),
         initialRoute: '/',
         routes: routes,

@@ -56,9 +56,24 @@ class _HomePageState extends State<HomePage> {
         onTap: onTap,
         activeColor: AppColors.bgColor,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.library_books)),
-          BottomNavigationBarItem(icon: Icon(Icons.list)),
-          BottomNavigationBarItem(icon: Icon(Icons.search)),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.library_books,
+            ),
+            title: Text('My Learning'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.list,
+            ),
+            title: Text('Browse Courses'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
+            ),
+            title: Text('Search'),
+          ),
         ],
       ),
     );
