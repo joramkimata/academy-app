@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:izwebacademy_app/support/colors/app_colors.dart';
 import 'package:izwebacademy_app/support/inputs/form_input.dart';
-import 'package:izwebacademy_app/support/links/navigation_link.dart';
-import 'package:izwebacademy_app/support/loaders/loader.dart';
 import 'package:izwebacademy_app/support/logo/logo_holder.dart';
 import 'package:izwebacademy_app/support/ui/action_button.dart';
 import 'package:izwebacademy_app/support/ui/nav_button.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  bool _isLoading = false;
-
+class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,31 +28,34 @@ class _LoginPageState extends State<LoginPage> {
                           obscureText: false,
                           validator: (value) {},
                           onSaved: (value) {},
-                          sizeBoxHeight: 15.0,
+                        ),
+                        SizedBox(
+                          height: 15.0,
                         ),
                         FormInput(
                           labelText: 'Password',
                           textInputType: TextInputType.text,
-                          validator: (value) {},
                           obscureText: true,
+                          validator: (value) {},
                           onSaved: (value) {},
-                          sizeBoxHeight: 10,
                         ),
-                        NavLink(
-                          onClick: () {},
-                          linkText: 'Forget Password',
-                          sizedBoxHeight: 30,
+                        SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          height: 40.0,
                         ),
                         ActionButton(
-                          onClick: () {},
                           labelText: 'Sign In',
+                          onClick: () {},
                           isLoading: false,
-                          sizedBoxHeight: 30,
+                        ),
+                        SizedBox(
+                          height: 20.0,
                         ),
                         NavButton(
-                          labelText: 'Create Account',
-                          onClick: () {},
-                        )
+                          labelText: 'Sign Up',
+                        ),
                       ],
                     ),
                   ),
