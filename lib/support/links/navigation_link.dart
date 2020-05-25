@@ -21,14 +21,17 @@ class NavLink extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            InkWell(
-              onTap: onClick,
-              child: Text(
-                linkText,
-                style: TextStyle(
-                  color: AppColors.bgColor,
-                  decoration: TextDecoration.underline,
-                  fontSize: fontSize == null ? 28 : fontSize,
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: onClick,
+                child: Text(
+                  linkText,
+                  style: TextStyle(
+                    color: AppColors.bgColor,
+                    decoration: TextDecoration.underline,
+                    fontSize: fontSize == null ? 28 : fontSize,
+                  ),
                 ),
               ),
             ),

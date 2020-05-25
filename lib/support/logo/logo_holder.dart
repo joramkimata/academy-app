@@ -9,15 +9,16 @@ class LogoHolder extends StatelessWidget {
   final bool alt;
   @override
   Widget build(BuildContext context) {
+    ImageProvider logo = AssetImage('assets/logos/app_logo.jpg');
+    ImageProvider logo2 = AssetImage('assets/logos/app_logo-2.jpg');
+
     return Container(
       width: 180.0,
       height: 180.0,
       padding: EdgeInsets.all(100),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: this.alt != true
-              ? AssetImage('assets/logos/logo.jpg')
-              : AssetImage('assets/logos/logo-2.jpg'),
+          image: this.alt != true ? logo : logo2,
           fit: BoxFit.cover,
         ),
       ),

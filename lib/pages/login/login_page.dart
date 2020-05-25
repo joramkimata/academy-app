@@ -4,6 +4,7 @@ import 'package:izwebacademy_app/support/inputs/form_input.dart';
 import 'package:izwebacademy_app/support/links/navigation_link.dart';
 import 'package:izwebacademy_app/support/loaders/loader.dart';
 import 'package:izwebacademy_app/support/logo/logo_holder.dart';
+import 'package:izwebacademy_app/support/routes/routes.dart';
 import 'package:izwebacademy_app/support/ui/action_button.dart';
 import 'package:izwebacademy_app/support/ui/nav_button.dart';
 
@@ -49,7 +50,10 @@ class _LoginPageState extends State<LoginPage> {
                           sizeBoxHeight: 10,
                         ),
                         NavLink(
-                          onClick: () {},
+                          onClick: () {
+                            Navigator.pushNamed(
+                                context, Routes.resetPasswordUrl);
+                          },
                           linkText: 'Forget Password',
                           sizedBoxHeight: 30,
                         ),
@@ -61,7 +65,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         NavButton(
                           labelText: 'Create Account',
-                          onClick: () {},
+                          onClick: () {
+                            Navigator.pushNamed(context, Routes.registerUrl);
+                          },
                         )
                       ],
                     ),

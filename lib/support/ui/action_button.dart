@@ -27,18 +27,21 @@ class ActionButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
             color: AppColors.bgColor,
           ),
-          child: InkWell(
-            onTap: () {},
-            child: Center(
-              child: isLoading
-                  ? Loader()
-                  : Text(
-                      labelText,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26,
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () {},
+              child: Center(
+                child: isLoading
+                    ? Loader()
+                    : Text(
+                        labelText,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
+                        ),
                       ),
-                    ),
+              ),
             ),
           ),
         ),
