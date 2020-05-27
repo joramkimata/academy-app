@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:izwebacademy_app/builders/page_route_builder.dart';
+import 'package:izwebacademy_app/pages/index.dart';
 import 'package:izwebacademy_app/support/colors/app_colors.dart';
 import 'package:izwebacademy_app/support/inputs/form_input.dart';
 import 'package:izwebacademy_app/support/links/navigation_link.dart';
@@ -51,15 +53,21 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         NavLink(
                           onClick: () {
-                            Navigator.pushNamed(
-                                context, Routes.resetPasswordUrl);
+                            //Navigator.pushNamed(
+                            // context, Routes.resetPasswordUrl);
+                            Navigator.push(context,
+                                SlideRightRoute(page: ForgetPasswordPage()));
                           },
                           linkText: 'Forget Password',
                           sizedBoxHeight: 30,
                         ),
                         ActionButton(
                           onClick: () {
-                            Navigator.pushReplacementNamed(context, Routes.homeUrl);
+                            //Navigator.pushReplacementNamed(context, Routes.homeUrl);
+                            Navigator.of(context)
+                                .popUntil(ModalRoute.withName(Routes.loginUrl));
+                            Navigator.pushReplacement(
+                                context, SlideRightRoute(page: HomePage()));
                           },
                           labelText: 'Sign In',
                           isLoading: false,
@@ -68,7 +76,9 @@ class _LoginPageState extends State<LoginPage> {
                         NavButton(
                           labelText: 'Create Account',
                           onClick: () {
-                            Navigator.pushNamed(context, Routes.registerUrl);
+                            //Navigator.pushNamed(context, Routes.registerUrl);
+                            Navigator.push(
+                                context, SlideRightRoute(page: RegisterPage()));
                           },
                         )
                       ],

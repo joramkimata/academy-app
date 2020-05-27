@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:izwebacademy_app/builders/page_route_builder.dart';
+import 'package:izwebacademy_app/pages/index.dart';
 import 'package:izwebacademy_app/support/colors/app_colors.dart';
 import 'package:izwebacademy_app/support/loaders/loader.dart';
 import 'package:izwebacademy_app/support/logo/logo_holder.dart';
-import 'package:izwebacademy_app/support/routes/routes.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -14,7 +15,8 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 5), () {
-      Navigator.pushReplacementNamed(context, Routes.loginUrl);
+      //Navigator.pushReplacementNamed(context, Routes.loginUrl);
+      Navigator.pushReplacement(context, SlideRightRoute(page: LoginPage()));
     });
   }
 

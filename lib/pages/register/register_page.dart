@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:izwebacademy_app/builders/page_route_builder.dart';
+import 'package:izwebacademy_app/pages/index.dart';
 import 'package:izwebacademy_app/support/inputs/form_input.dart';
 import 'package:izwebacademy_app/support/links/navigation_link.dart';
 import 'package:izwebacademy_app/support/logo/logo_holder.dart';
@@ -57,7 +59,9 @@ class RegisterPage extends StatelessWidget {
                         ),
                         NavLink(
                           onClick: () {
-                            Navigator.pushNamed(context, Routes.loginUrl);
+                            //Navigator.pushNamed(context, Routes.loginUrl);
+                            Navigator.push(
+                                context, SlideRightRoute(page: LoginPage()));
                           },
                           linkText: 'Already a member? Login',
                           sizedBoxHeight: 40,

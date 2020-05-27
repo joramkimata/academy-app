@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:izwebacademy_app/builders/page_route_builder.dart';
+import 'package:izwebacademy_app/pages/index.dart';
 import 'package:izwebacademy_app/support/inputs/form_input.dart';
 import 'package:izwebacademy_app/support/logo/logo_holder.dart';
 import 'package:izwebacademy_app/support/routes/routes.dart';
@@ -53,7 +55,9 @@ class ForgetPasswordPage extends StatelessWidget {
                         NavButton(
                             labelText: 'Create Account',
                             onClick: () {
-                              Navigator.pushNamed(context, Routes.registerUrl);
+                              //Navigator.pushNamed(context, Routes.registerUrl);
+                              Navigator.push(context,
+                                  SlideRightRoute(page: RegisterPage()));
                             }),
                       ],
                     ),
