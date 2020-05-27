@@ -9,7 +9,7 @@ class BrowseCoursesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
-      body: linearProgress(),
+      body: circularProgress(),
     );
   }
 }
