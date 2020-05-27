@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
           MyCoursesPage(),
           BrowseCoursesPage(),
           SearchCoursePage(),
+          AccountProfilePage(),
         ],
         controller: pageController,
         onPageChanged: onPageChanged,
@@ -75,6 +76,12 @@ class _HomePageState extends State<HomePage> {
               Icons.search,
             ),
             title: Text('Search'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.supervised_user_circle,
+            ),
+            title: Text('Account'),
           ),
         ],
       ),

@@ -7,4 +7,5 @@ export './register/register_page.dart';
 export './courses/mine/my_courses_page.dart';
 export './courses/browse/browser_courses_page.dart';
 export './courses/search/search_courses.dart';
+export './account/account_profile.dart';
 export './home/home_page.dart';
