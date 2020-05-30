@@ -44,9 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                           labelText: 'Email',
                           textInputType: TextInputType.emailAddress,
                           obscureText: false,
-                          validator: (String value) {
-                            if (value.isEmpty) return 'Required';
-                          },
+                          validator: (String value) {},
                           onSaved: (value) {
                             _auth["email"] = value;
                           },
@@ -55,9 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                         FormInput(
                           labelText: 'Password',
                           textInputType: TextInputType.text,
-                          validator: (value) {
-                            if (value.isEmpty) return 'Required';
-                          },
+                          validator: (value) {},
                           obscureText: true,
                           onSaved: (value) {
                             _auth["password"] = value;
@@ -94,6 +90,25 @@ class _LoginPageState extends State<LoginPage> {
                               setState(() {
                                 _isLoading = false;
                               });
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                    title: new Text("Sign In - Error"),
+                                    content: new Text(map['message']),
+                                    actions: <Widget>[
+                                      // usually buttons at the bottom of the dialog
+                                      new FlatButton(
+                                        child: new Text("Close"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
                               return;
                             }
 
