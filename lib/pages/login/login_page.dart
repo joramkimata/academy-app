@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:izwebacademy_app/builders/page_route_builder.dart';
+import 'package:izwebacademy_app/io/user.dart';
 import 'package:izwebacademy_app/models/auth_model.dart';
 import 'package:izwebacademy_app/pages/index.dart';
 import 'package:izwebacademy_app/support/inputs/form_input.dart';
 import 'package:izwebacademy_app/support/links/navigation_link.dart';
 import 'package:izwebacademy_app/support/logo/logo_holder.dart';
-import 'package:izwebacademy_app/support/routes/routes.dart';
 import 'package:izwebacademy_app/support/ui/action_button.dart';
 import 'package:izwebacademy_app/support/ui/nav_button.dart';
 import 'package:provider/provider.dart';
@@ -111,6 +111,9 @@ class _LoginPageState extends State<LoginPage> {
                               );
                               return;
                             }
+
+                            var user = User.fromJson(map["data"]["user"]);
+                            authModel.storeToken(user.token);
 
                             Navigator.pushReplacement(
                                 context, SlideRightRoute(page: HomePage()));
