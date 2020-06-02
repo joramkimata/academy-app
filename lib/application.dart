@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:izwebacademy_app/models/auth_model.dart';
+import 'package:izwebacademy_app/models/course_model.dart';
 import 'package:izwebacademy_app/routes.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,10 @@ class Application extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<AuthModel>(
             create: (_) => AuthModel(),
-          )
+          ),
+          ChangeNotifierProvider<CourseModel>(
+            create: (_) => CourseModel(),
+          ),
         ],
         child: MaterialApp(
           title: 'Izweb Academy',
