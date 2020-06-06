@@ -35,6 +35,9 @@ class _BrowseCoursesPageState extends State<BrowseCoursesPage> {
             ),
           ),
           CourseCategories(),
+          SizedBox(
+            height: 20,
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CourseList(),

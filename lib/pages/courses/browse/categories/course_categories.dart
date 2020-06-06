@@ -15,7 +15,7 @@ class CourseCategories extends StatelessWidget {
         builder: (_, AsyncSnapshot<List<CourseCategory>> snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
-              return linearProgress(); 
+              return linearProgress();
             default:
               if (snapshot.hasError)
                 return Container(
@@ -29,11 +29,6 @@ class CourseCategories extends StatelessWidget {
                   categories: snapshot.data,
                 );
           }
-
-          return ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[],
-          );
         });
   }
 }
