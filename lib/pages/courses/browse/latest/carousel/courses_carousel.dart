@@ -13,6 +13,7 @@ class LatestCoursesCarousel extends StatelessWidget {
     return Container(
       height: 200,
       child: Carousel(
+        boxFit: BoxFit.cover,
         dotColor: AppColors.bgColor,
         dotSize: 5,
         onImageTap: (index) {},

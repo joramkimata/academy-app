@@ -3,6 +3,7 @@ import 'package:izwebacademy_app/models/course_model.dart';
 import 'package:izwebacademy_app/pages/courses/browse/categories/course_categories.dart';
 import 'package:izwebacademy_app/pages/courses/browse/courses/course_list.dart';
 import 'package:izwebacademy_app/pages/courses/browse/latest/latest_courses.dart';
+import 'package:izwebacademy_app/support/colors/app_colors.dart';
 import 'package:izwebacademy_app/widgets/index.dart';
 import 'package:izwebacademy_app/widgets/progressbar/progressbar.dart';
 import 'package:provider/provider.dart';
@@ -19,11 +20,25 @@ class _BrowseCoursesPageState extends State<BrowseCoursesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           LatestCourses(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "Categories",
+              style: TextStyle(
+                color: AppColors.bgColor,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           CourseCategories(),
-          CourseList(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CourseList(),
+          ),
         ],
       ),
     );
