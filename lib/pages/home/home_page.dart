@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           MyCoursesPage(),
           BrowseCoursesPage(),
-          SearchCoursePage(),
           AccountProfilePage(),
         ],
         controller: pageController,
@@ -70,12 +69,6 @@ class _HomePageState extends State<HomePage> {
               Icons.list,
             ),
             title: Text('Browse Courses'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-            ),
-            title: Text('Search'),
           ),
           BottomNavigationBarItem(
             icon: Icon(

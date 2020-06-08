@@ -15,7 +15,7 @@ AppBar header(context) {
     actions: <Widget>[
       IconButton(
         icon: Icon(
-          Icons.exit_to_app,
+          Icons.search,
         ),
         onPressed: () {
           Navigator.popAndPushNamed(context, Routes.loginUrl);

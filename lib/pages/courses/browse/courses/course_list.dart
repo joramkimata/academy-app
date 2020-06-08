@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:getflutter/components/avatar/gf_avatar.dart';
+import 'package:getflutter/components/button/gf_button.dart';
+import 'package:getflutter/components/button/gf_button_bar.dart';
+import 'package:getflutter/components/card/gf_card.dart';
+import 'package:getflutter/components/list_tile/gf_list_tile.dart';
+import 'package:izwebacademy_app/io/course.dart';
 import 'package:izwebacademy_app/io/course_category.dart';
 import 'package:izwebacademy_app/models/course_model.dart';
+import 'package:izwebacademy_app/support/colors/app_colors.dart';
 import 'package:izwebacademy_app/widgets/progressbar/progressbar.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +37,7 @@ class CourseList extends StatelessWidget {
                 courseMain.add(
                   _CourseList(
                     courseCategory: category.title,
-                    courseCards: <Widget>[],
+                    courseCards: category.courses,
                   ),
                 );
               });
@@ -53,17 +60,13 @@ class _CourseList extends StatelessWidget {
   }) : super(key: key);
 
   final String courseCategory;
-  final List<Widget> courseCards;
+  final List<dynamic> courseCards;
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints:
-          BoxConstraints(maxHeight: 200), // **THIS is the important part**
-      child: _Courses(
-        courseCategory: courseCategory,
-        courseCards: courseCards,
-      ),
+    return _Courses(
+      courseCategory: courseCategory,
+      courseCards: courseCards,
     );
   }
 }
@@ -76,10 +79,107 @@ class _Courses extends StatelessWidget {
   }) : super(key: key);
 
   final String courseCategory;
-  final List<Widget> courseCards;
+  final List<dynamic> courseCards;
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> courses = List();
+
+    courseCards.forEach((element) {
+      courses.add(
+        Row(
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  height: 150.0,
+                  width: 250.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        element["cover_image_url"]
+                            .toString()
+                            .replaceAll("localhost", "10.0.2.2"),
+                      ),
+                      fit: BoxFit.fill,
+                    ),
+                    shape: BoxShape.rectangle,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Text(
+                      element["title"],
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          "\$200",
+                          style: TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            fontSize: 28,
+                            color: Colors.red,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "\$10",
+                          style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 28,
+                            color: Colors.green,
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      height: 40,
+                      width: 250,
+                      decoration: BoxDecoration(
+                        color: AppColors.bgColor,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Center(
+                          child: Text(
+                            "Enroll Now!",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                )
+              ],
+            ),
+            SizedBox(
+              width: 20,
+            ),
+          ],
+        ),
+      );
+    });
+
     return Column(
       children: <Widget>[
         Row(
@@ -93,7 +193,7 @@ class _Courses extends StatelessWidget {
               ),
             ),
             Text(
-              "See all >",
+              "",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -104,13 +204,13 @@ class _Courses extends StatelessWidget {
         Divider(),
         ConstrainedBox(
           constraints:
-              BoxConstraints(maxHeight: 100), // **THIS is the important part**
+              BoxConstraints(maxHeight: 330), // **THIS is the important part**
           child: ListView(
-            shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            children: courseCards,
+            children: courses,
           ),
         ),
+        SizedBox(height: 0),
       ],
     );
   }
