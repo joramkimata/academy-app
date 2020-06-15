@@ -4,9 +4,11 @@ import 'package:getflutter/components/button/gf_button.dart';
 import 'package:getflutter/components/button/gf_button_bar.dart';
 import 'package:getflutter/components/card/gf_card.dart';
 import 'package:getflutter/components/list_tile/gf_list_tile.dart';
+import 'package:izwebacademy_app/builders/page_route_builder.dart';
 import 'package:izwebacademy_app/io/course.dart';
 import 'package:izwebacademy_app/io/course_category.dart';
 import 'package:izwebacademy_app/models/course_model.dart';
+import 'package:izwebacademy_app/pages/courses/browse/enroll/course_enroll.dart';
 import 'package:izwebacademy_app/support/colors/app_colors.dart';
 import 'package:izwebacademy_app/widgets/progressbar/progressbar.dart';
 import 'package:provider/provider.dart';
@@ -146,22 +148,32 @@ class _Courses extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 10),
-                    Container(
-                      height: 40,
-                      width: 250,
-                      decoration: BoxDecoration(
-                        color: AppColors.bgColor,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            SlideRightRoute(
+                                page: CourseEnrollPage(
+                              course: element,
+                            )));
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 250,
+                        decoration: BoxDecoration(
+                          color: AppColors.bgColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Center(
-                          child: Text(
-                            "Enroll Now!",
-                            style: TextStyle(
-                              color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Center(
+                            child: Text(
+                              "Enroll Now!",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
