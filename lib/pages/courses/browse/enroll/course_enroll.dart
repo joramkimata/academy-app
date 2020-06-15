@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:izwebacademy_app/io/course.dart';
 import 'package:izwebacademy_app/support/colors/app_colors.dart';
 import 'package:izwebacademy_app/support/ui/action_button.dart';
@@ -34,111 +35,160 @@ class _CourseEnrollPageState extends State<CourseEnrollPage>
     return Container(
       child: Scaffold(
         appBar: header(context),
-        body: Column(
+        body: ListView(
           children: <Widget>[
-            Container(
-              height: 200,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ActionButton(
-                onClick: () {},
-                labelText: 'Buy this Course',
-                isLoading: false,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            _Content(widget: widget, controller: _controller, course: _course)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Content extends StatelessWidget {
+  const _Content({
+    Key key,
+    @required this.widget,
+    @required TabController controller,
+    @required Course course,
+  })  : _controller = controller,
+        _course = course,
+        super(key: key);
+
+  final CourseEnrollPage widget;
+  final TabController _controller;
+  final Course _course;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Container(
+          height: 200,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: ActionButton(
+            onClick: () {},
+            labelText: 'Buy this Course',
+            isLoading: false,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Column(
                 children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Text(
-                        widget.course["title"],
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    widget.course["title"],
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "\$200",
-                        style: TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                          fontSize: 28,
-                          color: Colors.red,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "\$10",
-                        style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 28,
-                          color: Colors.green,
-                        ),
-                      )
-                    ],
-                  )
                 ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                decoration: new BoxDecoration(
-                  color: AppColors.bgColor,
-                ),
-                child: new TabBar(
-                  controller: _controller,
-                  tabs: [
-                    new Tab(
-                      text: 'OVERVIEW',
+              Row(
+                children: <Widget>[
+                  Text(
+                    "\$200",
+                    style: TextStyle(
+                      decoration: TextDecoration.lineThrough,
+                      fontSize: 28,
+                      color: Colors.red,
                     ),
-                    new Tab(
-                      text: 'CONTENTS',
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "\$10",
+                    style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontSize: 28,
+                      color: Colors.green,
                     ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SingleChildScrollView(
-                child: TabBarView(
-                  controller: _controller,
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+        Divider(
+          thickness: 4,
+        ),
+        _ContentCard(
+          title: 'Description',
+          content: _course.description,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            width: double.infinity,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "Description",
-                              style: TextStyle(
-                                fontSize: 19,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(_course.coverImageUrl)
-                          ],
-                        ),
+                    Text(
+                      "Curriculum",
+                      style: TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text("Contents"),
+                    Text("Lectures")
                   ],
                 ),
               ),
             ),
-          ],
+          ),
+        ),
+        _ContentCard(
+          title: 'Requirements',
+          content: _course.requirements,
+        ),
+      ],
+    );
+  }
+}
+
+class _ContentCard extends StatelessWidget {
+  final String title;
+  final String content;
+
+  const _ContentCard({Key key, this.title, this.content}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        width: double.infinity,
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Html(
+                  data: content,
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
