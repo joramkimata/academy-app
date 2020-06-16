@@ -1,3 +1,4 @@
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:izwebacademy_app/io/course.dart';
@@ -123,6 +124,10 @@ class _Content extends StatelessWidget {
           title: 'Description',
           content: _course.description,
         ),
+        _ContentCard(
+          title: 'Requirements',
+          content: _course.requirements,
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -148,10 +153,6 @@ class _Content extends StatelessWidget {
             ),
           ),
         ),
-        _ContentCard(
-          title: 'Requirements',
-          content: _course.requirements,
-        ),
       ],
     );
   }
@@ -169,24 +170,54 @@ class _ContentCard extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: Container(
         width: double.infinity,
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold,
+        child: ExpandableNotifier(
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  ScrollOnExpand(
+                    scrollOnExpand: true,
+                    scrollOnCollapse: false,
+                    child: ExpandablePanel(
+                      theme: const ExpandableThemeData(
+                        headerAlignment: ExpandablePanelHeaderAlignment.center,
+                        tapBodyToCollapse: true,
+                      ),
+                      header: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      collapsed: Html(
+                        data: content.substring(0, 50) + "....",
+                      ),
+                      expanded: Html(
+                        data: content,
+                      ),
+                      builder: (_, collapsed, expanded) {
+                        return Padding(
+                          padding:
+                              EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                          child: Expandable(
+                            collapsed: collapsed,
+                            expanded: expanded,
+                            theme: const ExpandableThemeData(crossFadePoint: 0),
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                ),
-                Html(
-                  data: content,
-                )
-              ],
+                ],
+              ),
             ),
           ),
         ),
